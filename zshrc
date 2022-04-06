@@ -1,9 +1,10 @@
 # Greeting
 #echo "Welcome to Kali Linux"
 
+ip="$(ip a s tun0 2>/dev/null | grep -o -P '(?<=inet )[0-9]{1,3}(\.[0-9]{1,3}){3}')"
 
 # Prompt
-if [[ $(/usr/share/kali-themes/xfce4-panel-genmon-vpnip.sh) == "<txt></txt>" ]]; then PROMPT="%F{red}┌[%B%F{%(#.red.blue)}%n%(#.💀.㉿)%m%b%F{%(#.blue.red)}]─[%f%F{magenta}%d%f%F{red}]%f"$'\n'"%F{red}└╼%f%F{green}[%f%F{yellow}★%f]%f%F{yellow}$ %f" ;else PROMPT="%F{red}┌[%f%F{green}%D{VPN $(/usr/share/kali-themes/xfce4-panel-genmon-vpnip.sh | awk '{print $3}')}%f%F{red}][%B%F{%(#.red.blue)}%n%(#.💀.㉿)%m%b%F{%(#.blue.red)}]─[%f%F{magenta}%d%f%F{red}]%f"$'\n'"%F{red}└╼%f%F{green}[%f%F{yellow}★%f]%f%F{yellow}$ %f" ;fi
+if [[ -z "$ip" ]]; then PROMPT="%F{red}┌[%B%F{%(#.red.blue)}%n%(#.💀.㉿)%m%b%F{%(#.blue.red)}]─[%f%F{magenta}%d%f%F{red}]%f"$'\n'"%F{red}└╼%f%F{green}[%f%F{yellow}★%f]%f%F{yellow}$ %f" ;else PROMPT="%F{red}┌[%f%F{green}%D{VPN $(/usr/share/kali-themes/xfce4-panel-genmon-vpnip.sh | awk '{print $3}')}%f%F{red}][%B%F{%(#.red.blue)}%n%(#.💀.㉿)%m%b%F{%(#.blue.red)}]─[%f%F{magenta}%d%f%F{red}]%f"$'\n'"%F{red}└╼%f%F{green}[%f%F{yellow}★%f]%f%F{yellow}$ %f" ;fi
 
 setopt autocd              # change directory just by typing its name
 #setopt correct            # auto correct mistakes
