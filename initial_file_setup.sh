@@ -3,9 +3,10 @@
 new_pwsh_terminal () {
 	echo "Changing powershell terminals"
 	for homedir in /home/*; do cp -R "$homedir"/.config/powershell/Microsoft.PowerShell_profile.ps1 "$homedir"/.config/powershell/Microsoft.PowerShell_profile.ps1.bak; done
-        for homedir in /home/*; do cp Microsoft.PowerShell_profile.ps1 "$homedir"/.config/powershell/Microsoft.PowerShell_profile.ps1; done
-	mkdir ~/.config && ~/.config/powershell
-	cp Microsoft.PowerShell_profile.ps1 ~/config/powershell/
+    for homedir in /home/*; do cp Microsoft.PowerShell_profile.ps1 "$homedir"/.config/powershell/Microsoft.PowerShell_profile.ps1; done
+	mkdir ~/.config
+	mkdir ~/.config/powershell
+	cp Microsoft.PowerShell_profile.ps1 ~/.config/powershell/
 	echo "Done! Open up new Powershell terminal to see the changes"
 	echo "Your original terminals are in ~/.config/powershell/Microsoft.PowerShell_profile.ps1.bak for each user"
 	exit 0
