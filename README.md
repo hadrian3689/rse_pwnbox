@@ -1,8 +1,4 @@
-# Project Title
-
-My own Pwnbox theme for Kali Linux 
-
-## Description
+# My own Pwnbox theme for Kali Linux 
 
 This is just a theme I have edited for my own Kali distro.
 
