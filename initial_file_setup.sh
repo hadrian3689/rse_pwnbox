@@ -3,7 +3,7 @@
 new_pwsh_terminal () {
 	echo "Changing powershell terminals"
 	for homedir in /home/*; do cp -R "$homedir"/.config/powershell/Microsoft.PowerShell_profile.ps1 "$homedir"/.config/powershell/Microsoft.PowerShell_profile.ps1.bak; done
-    for homedir in /home/*; do cp Microsoft.PowerShell_profile.ps1 "$homedir"/.config/powershell/Microsoft.PowerShell_profile.ps1; done
+	for homedir in /home/*; do cp Microsoft.PowerShell_profile.ps1 "$homedir"/.config/powershell/Microsoft.PowerShell_profile.ps1; done
 	mkdir ~/.config
 	mkdir ~/.config/powershell
 	cp Microsoft.PowerShell_profile.ps1 ~/.config/powershell/
@@ -24,12 +24,6 @@ new_zsh_terminal () {
 }
 
 file_moving () {
-	echo "Creating DIR /opt/rse_pwnbox/"
-	mkdir /opt/rse_pwnbox
-	
-	echo "Copying files for backup"
-	cp -R * /opt/rse_pwnbox/
-	
 	echo "Copying background images"
 	mkdir /usr/share/backgrounds/rse
 	cp -R backgrounds/* /usr/share/backgrounds/rse/
