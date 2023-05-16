@@ -10,5 +10,5 @@ if [ "$tun" != "" ]; then
 else
   printf "<icon>network-vpn-symbolic</icon>"
   printf "<txt> IP ${eth} </txt>"
-  printf "<tool>VPN IP</tool>"
+  printf "<tool>My IP</tool>"
 fi
