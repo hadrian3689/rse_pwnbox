@@ -1,12 +1,14 @@
 #!/bin/sh
 
-ip="$(ip a s tun0 2>/dev/null | grep -o -P '(?<=inet )[0-9]{1,3}(\.[0-9]{1,3}){3}')"
+tun="$(ip a s tun0 2>/dev/null | grep -o -P '(?<=inet )[0-9]{1,3}(\.[0-9]{1,3}){3}')"
+eth="$(ip a s eth0 2>/dev/null | grep -o -P '(?<=inet )[0-9]{1,3}(\.[0-9]{1,3}){3}')"
 
-if [ "$ip" != "" ]; then
+if [ "$tun" != "" ]; then
   printf "<icon>network-vpn-symbolic</icon>"
-  printf "<txt> VPN ${ip} </txt>"
+  printf "<txt> VPN ${tun} </txt>"
   printf "<tool>VPN IP</tool>"
 else
-  printf "<txt></txt>"
+  printf "<icon>network-vpn-symbolic</icon>"
+  printf "<txt> IP ${eth} </txt>"
+  printf "<tool>VPN IP</tool>"
 fi
-
