@@ -6,7 +6,7 @@ $PROMPT_ALTERNATIVE='twoline'
 $NEWLINE_BEFORE_PROMPT='yes'
 # STOP KALI CONFIG VARIABLES
 $ip = $(ip a s tun0 2>/dev/null | grep -o -P '(?<=inet )[0-9]{1,3}(\.[0-9]{1,3}){3}')
-
+  
   $esc = [char]27
   $bell = [char]7
   $bold = "$esc[1m"
@@ -14,7 +14,11 @@ $ip = $(ip a s tun0 2>/dev/null | grep -o -P '(?<=inet )[0-9]{1,3}(\.[0-9]{1,3})
   If ($NEWLINE_BEFORE_PROMPT -eq 'yes') { Write-Host }
   If ($PROMPT_ALTERNATIVE -eq 'twoline') {
     If ($ip -eq $null) {
-        Write-Host "┌──(" -NoNewLine -ForegroundColor Blue
+        Write-Host "┌──(" -NoNewLine -ForegroundColor Green
+        Write-Host "${bold}IP " -NoNewLine -ForegroundColor Yellow
+        Write-Host "${bold}$(ip a s eth0 2>/dev/null | grep -o -P '(?<=inet )[0-9]{1,3}(\.[0-9]{1,3}){3}')${reset}" -NoNewLine -ForegroundColor Yellow
+        Write-Host ")" -NoNewLine -ForegroundColor Green  
+        Write-Host "──(" -NoNewLine -ForegroundColor Blue
         Write-Host "${bold}$([environment]::username)㉿$([system.environment]::MachineName)${reset}" -NoNewLine -ForegroundColor Magenta
         Write-Host ")-[" -NoNewLine -ForegroundColor Blue
         Write-Host "${bold}$(Get-Location)${reset}" -NoNewLine -ForegroundColor White
