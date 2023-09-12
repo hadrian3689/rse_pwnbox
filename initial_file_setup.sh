@@ -33,6 +33,11 @@ file_moving () {
 	cp xfce4-panel-genmon-vpnip.sh /usr/share/kali-themes/xfce4-panel-genmon-vpnip.sh
 	chmod +x /usr/share/kali-themes/xfce4-panel-genmon-vpnip.sh
 
+	echo "Generating Reverse Shell Program"
+	gcc revshell_gen.c -o revshell
+	mv revshell /usr/bin/revshell
+	chmod +x /usr/bin/revshell
+
 	echo "Copying icon files"
 	cp -R rse/ /usr/share/icons/
 	cp -R Material-Black-Lime-Numix-FLAT/ /usr/share/icons/
