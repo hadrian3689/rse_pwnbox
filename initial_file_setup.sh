@@ -89,7 +89,6 @@ file_moving () {
         cp -R rse/ /usr/share/icons/
         cp -R Material-Black-Lime-Numix-FLAT/ /usr/share/icons/
         pentest_tools
-
 }
 
 root_check () {
