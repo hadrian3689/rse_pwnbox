@@ -52,7 +52,7 @@ pentest_tools () {
         name="chisel_1.9.1_windows_amd64.gz"
         curl -L -o $name "$download_url"
         echo "Downloaded $name"
-        gunzip -c $name > /opt/chisel/chisel && rm $name
+        gunzip -c $name > /opt/chisel/chisel.exe && rm $name
 
         api_url="https://api.github.com/repos/DominicBreuker/pspy/releases/latest"
         name="pspy64"
