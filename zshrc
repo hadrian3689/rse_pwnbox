@@ -1,6 +1,5 @@
-#Getting IPs
+#Getting IP
 tun="$(ip a s tun0 2>/dev/null | grep -o -P '(?<=inet )[0-9]{1,3}(\.[0-9]{1,3}){3}')"
-eth="$(ip a s eth0 2>/dev/null | grep -o -P '(?<=inet )[0-9]{1,3}(\.[0-9]{1,3}){3}')"
 
 # Prompt
 if [[ -z "$tun" ]]
