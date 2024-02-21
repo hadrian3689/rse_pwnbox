@@ -24,7 +24,7 @@ new_zsh_terminal () {
 }
 
 pentest_tools () {
-        mkdir /opt/chisel && mkdir /opt/pspy && mkdir /opt/peas && mkdir /opt/statics
+        mkdir /opt/chisel && mkdir /opt/pspy && mkdir /opt/peas && mkdir /opt/statics && mkdir /opt/nxc
         wget "https://github.com/andrew-d/static-binaries/raw/master/binaries/linux/x86_64/nmap" -O /opt/statics/nmap
         wget "https://github.com/int0x33/nc.exe/raw/master/nc64.exe" -O /opt/statics/nc64.exe
 
@@ -67,7 +67,15 @@ pentest_tools () {
         curl -L -o $name "$download_url"
         echo "Downloaded $name"
         unzip $name -d /opt/ && rm $name
-        new_zsh_terminal
+
+	api_url="https://api.github.com/repos/Pennyw0rth/NetExec/releases/latest"
+	download_url=$(curl -s "$api_url" | jq -r ".assets[0].browser_download_url")
+	name="nxc"
+	curl -L -o $name "$download_url"
+	echo "Downloaded $name"
+	mv $name /opt/nxc/$name
+        
+	new_zsh_terminal
 }
 
 file_moving () {
