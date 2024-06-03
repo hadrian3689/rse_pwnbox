@@ -23,58 +23,11 @@ new_zsh_terminal () {
         new_pwsh_terminal
 }
 
-pentest_tools () {
-        mkdir /opt/chisel && mkdir /opt/pspy && mkdir /opt/peas && mkdir /opt/statics && mkdir /opt/nxc
+static_tools () {
+        mkdir /opt/statics
         wget "https://github.com/andrew-d/static-binaries/raw/master/binaries/linux/x86_64/nmap" -O /opt/statics/nmap
         wget "https://github.com/int0x33/nc.exe/raw/master/nc64.exe" -O /opt/statics/nc64.exe
 
-        api_url="https://api.github.com/repos/carlospolop/PEASS-ng/releases/latest"
-        download_url=$(curl -s "$api_url" | jq -r ".assets[0].browser_download_url")
-        name="linpeas.sh"
-        curl -L -o $name "$download_url"
-        echo "Downloaded $name"
-        mv $name /opt/peas/$name
-
-        download_url=$(curl -s "$api_url" | jq -r ".assets[11].browser_download_url")
-        name="winPEASx64.exe"
-        curl -L -o $name "$download_url"
-        echo "Downloaded $name"
-        mv $name /opt/peas/$name
-
-        api_url="https://api.github.com/repos/jpillora/chisel/releases/latest"
-        download_url=$(curl -s "$api_url" | jq -r ".assets[4].browser_download_url")
-        name="chisel_1.9.1_linux_amd64.gz"
-        curl -L -o $name "$download_url"
-        echo "Downloaded $name"
-        gunzip -c $name > /opt/chisel/chisel && rm $name
-
-        download_url=$(curl -s "$api_url" | jq -r ".assets[21].browser_download_url")
-        name="chisel_1.9.1_windows_amd64.gz"
-        curl -L -o $name "$download_url"
-        echo "Downloaded $name"
-        gunzip -c $name > /opt/chisel/chisel.exe && rm $name
-
-        api_url="https://api.github.com/repos/DominicBreuker/pspy/releases/latest"
-        name="pspy64"
-        download_url=$(curl -s "$api_url" | jq -r ".assets[2].browser_download_url")
-        curl -L -o $name "$download_url"
-        echo "Downloaded $name"
-        mv $name /opt/pspy/$name
-
-        api_url="https://api.github.com/repos/NationalSecurityAgency/ghidra/releases/latest"
-        download_url=$(curl -s "$api_url" | jq -r ".assets[0].browser_download_url")
-        name="ghidra.zip"
-        curl -L -o $name "$download_url"
-        echo "Downloaded $name"
-        unzip $name -d /opt/ && rm $name
-
-	api_url="https://api.github.com/repos/Pennyw0rth/NetExec/releases/latest"
-	download_url=$(curl -s "$api_url" | jq -r ".assets[0].browser_download_url")
-	name="nxc"
-	curl -L -o $name "$download_url"
-	echo "Downloaded $name"
-	mv $name /opt/nxc/$name
-        
 	new_zsh_terminal
 }
 
@@ -96,7 +49,7 @@ file_moving () {
         echo "Copying icon files"
         cp -R rse/ /usr/share/icons/
         cp -R Material-Black-Lime-Numix-FLAT/ /usr/share/icons/
-        pentest_tools
+        static_tools
 }
 
 root_check () {
