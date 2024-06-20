@@ -25,9 +25,7 @@ new_zsh_terminal () {
 
 static_tools () {
         mkdir /opt/statics
-        wget "https://github.com/andrew-d/static-binaries/raw/master/binaries/linux/x86_64/nmap" -O /opt/statics/nmap
-        wget "https://github.com/int0x33/nc.exe/raw/master/nc64.exe" -O /opt/statics/nc64.exe
-
+	mv statics/* /opt/statics/
 	new_zsh_terminal
 }
 
