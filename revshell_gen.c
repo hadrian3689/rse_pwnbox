@@ -10,7 +10,7 @@ int upgrade(char* lhost,char* lport){
     printf("Then CTRL+Z to background the process\n");
     printf("tput lines;tput cols => to get your terminal's ROWS and COLUMNS\n");
     printf("stty raw -echo; fg then press ENTER twice\n");
-    printf("stty rows ROWS# and cols COLS#\n");
+    printf("stty rows ROWS# cols COLS#\n");
     printf("exportTERM=xterm => to be able to use the clear command\n");
 }
 
