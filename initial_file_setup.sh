@@ -44,6 +44,10 @@ file_moving () {
         mv revshell /usr/bin/revshell
         chmod +x /usr/bin/revshell
 
+ 	echo "Moving Windows Tools Intall script"
+  	mv install_windows_tools /usr/bin/install_windows_tools
+	chmod +x /usr/bin/install_windows_tools
+
         echo "Copying icon files"
         cp -R rse/ /usr/share/icons/
         cp -R Material-Black-Lime-Numix-FLAT/ /usr/share/icons/
