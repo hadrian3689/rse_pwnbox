@@ -1,0 +1,15 @@
+#!/bin/bash
+echo "Updating system"
+sudo apt-get update -y && \
+echo "Installing BloodHound"
+sudo apt-get install bloodhound -y && \
+echo "Installing pipx"
+sudo apt-get install pipx -y && pipx ensurepath && \
+echo "Installing Impacket"
+python3 -m pipx install impacket && \
+pipx install git+https://github.com/fortra/impacket --force && \
+echo "Installing Python BloodHound"
+pipx install git+https://github.com/dirkjanm/BloodHound.py --force && \
+echo "Installing NetExec"
+pipx install git+https://github.com/Pennyw0rth/NetExec --force && \
+echo "Run sudo neo4j console to finish Bloodhound setup"
