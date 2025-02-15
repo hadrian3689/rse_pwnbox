@@ -21,6 +21,6 @@ if echo "$output" | grep 'pip failed to build package' -A 2 | grep -q 'aardwolf'
     echo "Run sudo neo4j console to finish Bloodhound setup"
 else
     echo "$output"
-    echo "Installation completed successfully"
+    echo "Installation completed successfully or different error occurred"
     echo "Run sudo neo4j console to finish Bloodhound setup"
 fi
