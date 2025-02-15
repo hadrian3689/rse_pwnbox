@@ -11,5 +11,13 @@ pipx install git+https://github.com/fortra/impacket --force && \
 echo "Installing Python BloodHound"
 pipx install git+https://github.com/dirkjanm/BloodHound.py --force && \
 echo "Installing NetExec"
-pipx install git+https://github.com/Pennyw0rth/NetExec --force && \
+output=$(pipx install git+https://github.com/Pennyw0rth/NetExec --force 2>&1)
+if echo "$output" | grep -q "pip failed to build package:.*aardwolf"; then
+    echo "Detected 'pip failed to build package: aardwolf' error. Installing dependencies..."
+    sudo apt-get install rustup -y
+    pip install aardwolf --break-system-packages
+    pipx install git+https://github.com/Pennyw0rth/NetExec --force
+else
+    echo "Installation completed successfully or different error encountered."
+fi
 echo "Run sudo neo4j console to finish Bloodhound setup"
