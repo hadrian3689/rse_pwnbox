@@ -9,6 +9,10 @@ if [ "$tun" != "" ]; then
   printf "<icon>network-vpn-symbolic</icon>"
   printf "<txt> VPN ${tun} </txt>"
   printf "<tool>VPN IP</tool>"
+elif [ "$tun" != "" ] && [ "$eth1" != "" ]; then
+  printf "<icon>network-vpn-symbolic</icon>"
+  printf "<txt> VPN ${tun} | ${eth1} </txt>"
+  printf "<tool>VPN IP</tool>"
 elif [ "$eth" != "" ] && [ "$eth1" != "" ]; then
   printf "<icon>network-vpn-symbolic</icon>"
   printf "<txt> IP ${eth} | ${eth1} </txt>"
